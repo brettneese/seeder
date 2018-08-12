@@ -1,0 +1,19 @@
+version: '2'
+volumes:
+  dat-seeder:
+  screenly:
+  screenly-config:
+services:
+  screenly:
+    volumes:
+      - screenly:/home/pi/screenly
+      - screenly-config:/home/pi/.screenly
+    image: screenly/ose-dev-server
+    expose:
+      - "80"
+  dat-seeder:
+    build: ./
+    volumes:
+      - dat-seeder:/home/pi/seeder/
+    ports:
+      - "8080:80"
